@@ -7,323 +7,206 @@
   <meta name="description" content="A personalized monthly tech box packed with useful accessories — chargers, headphones, cables, LEDs and more. Built around your devices and preferences." />
   <link rel="icon" href="favicon.png" />
   <style>
-    :root{
-      --tp-bg: #f6f8fb;               /* soft light backdrop */
-      --tp-surface: 255 255 255;      /* for rgb() glass cards */
-      --tp-ink: #0c1b2a;              /* deep navy ink */
-      --tp-ink-2: #405266;            /* secondary ink */
-      --tp-blue: #0B1F44;             /* Tek‑Pak medium blue */
-      --tp-yellow: #FFD400;           /* Tek‑Pak yellow */
-      --tp-lime: #8DFE3D;             /* Tek‑Pak lime accent (polos) */
-      --tp-line: #E4E8EE;             /* hairline separators */
-      --radius-xl: 24px;
-      --radius-lg: 18px;
-      --shadow-1: 0 10px 30px rgba(0,0,0,.08);
-      --shadow-2: 0 18px 50px rgba(11,31,68,.18);
+    :root {
+      --metal-dark: #1a1a1a;
+      --metal-gray: #2a2a2a;
+      --metal-light: #3c3c3c;
+      --glow-purple: #b26dff;
+      --text-light: #f2f2f2;
+      --text-dim: #c9c9c9;
+      --radius-lg: 20px;
+      --shadow: 0 10px 25px rgba(0,0,0,0.5);
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      color:var(--tp-ink); background: radial-gradient(1400px 700px at 80% -10%, #e9f3ff 0, transparent 60%),
-                           radial-gradient(900px 600px at -10% 10%, #fffbe6 0, transparent 60%),
-                           var(--tp-bg);
-      line-height:1.45;
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      background: radial-gradient(circle at 30% 30%, #2a2a2a, #111);
+      color: var(--text-light);
     }
-    a{color:var(--tp-blue); text-decoration:none}
-    .wrap{max-width:1200px; margin:auto; padding:28px}
 
-    /* Header */
-    header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.1) blur(10px);
-      background: rgba(var(--tp-surface)/.7); border-bottom:1px solid var(--tp-line)}
-    .nav{display:flex; gap:16px; align-items:center; justify-content:space-between}
-    .brand{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.2px}
-    .brand .logo{width:42px; aspect-ratio:1/1; border-radius:12px; display:grid; place-items:center;
-      background: linear-gradient(135deg, var(--tp-blue), #162c57);
-      color:white; box-shadow: inset 0 -8px 16px rgba(0,0,0,.25), 0 6px 12px rgba(11,31,68,.25)}
-    .brand .logo svg{width:26px; height:26px}
-    .nav a.cta{padding:10px 16px; border-radius:999px; border:1px solid #1c2f57;
-      background: linear-gradient(180deg, #18305d, #0B1F44); color:white; font-weight:700;
-      box-shadow: var(--shadow-1), 0 0 0 0 rgba(141,254,61,.55); position:relative; overflow:hidden}
-    .nav a.cta::after{content:""; position:absolute; inset:-2px; border-radius:inherit;
-      background: radial-gradient(120px 40px at 20% -40%, rgba(141,254,61,.85), transparent 60%);
-      filter: blur(18px); opacity:.7; pointer-events:none}
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(26,26,26,0.9);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 22px;
+      border-bottom: 1px solid var(--metal-light);
+    }
 
-    /* Hero */
-    .hero{padding:72px 28px 20px}
-    .hero .inner{max-width:1180px; margin:auto; display:grid; grid-template-columns:1.2fr .8fr; gap:32px; align-items:center}
-    @media (max-width: 960px){ .hero .inner{grid-template-columns:1fr} }
+    .logo {
+      font-weight: 900;
+      font-size: 1.2rem;
+      color: var(--glow-purple);
+      letter-spacing: 1px;
+    }
 
-    .h-title{font-size: clamp(32px, 3.2vw, 52px); line-height:1.05; margin:0 0 14px; letter-spacing:.2px}
-    .h-kicker{display:inline-flex; align-items:center; gap:10px; padding:8px 14px; border-radius:999px; border:1px solid var(--tp-line);
-      background: rgba(var(--tp-surface)/.7); backdrop-filter: blur(8px);
-      box-shadow: 0 6px 14px rgba(0,0,0,.06)}
-    .h-kicker span.badge{display:inline-grid; place-items:center; width:22px; height:22px; border-radius:6px;
-      background: linear-gradient(135deg, var(--tp-yellow), #ffd400b8); color:#4a3b00; font-weight:900; font-size:12px}
-    .h-sub{font-size:clamp(16px,1.8vw,20px); color:var(--tp-ink-2); margin:12px 0 20px}
+    nav a {
+      text-decoration: none;
+      color: var(--text-light);
+      margin-left: 16px;
+      font-weight: 600;
+    }
 
-    .cta-row{display:flex; gap:14px; flex-wrap:wrap}
-    .btn{display:inline-flex; align-items:center; gap:10px; padding:14px 18px; border-radius:16px; font-weight:800; letter-spacing:.2px;
-      border:1px solid #bcd1ff; position:relative; isolation:isolate;
-      background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(240,245,255,.85));
-      box-shadow: var(--shadow-1)}
-    .btn .glow{position:absolute; inset:-2px; border-radius:inherit; z-index:-1;
-      background: radial-gradient(160px 60px at 20% -20%, rgba(141,254,61,.7), transparent 60%),
-                  radial-gradient(200px 60px at 90% -20%, rgba(255,212,0,.6), transparent 60%);
-      filter: blur(20px); opacity:.9}
-    .btn.primary{border-color:#24407a; color:white; background: linear-gradient(180deg, #1a3567, #0B1F44); box-shadow: var(--shadow-2)}
-    .btn.primary .glow{background: radial-gradient(200px 80px at 20% -20%, rgba(141,254,61,.9), transparent 60%)}
-    .btn:hover{transform: translateY(-1px)}
+    .hero {
+      padding: 60px 20px;
+      text-align: center;
+    }
 
-    .hero-card{border-radius: var(--radius-xl); padding:22px; border:1px solid var(--tp-line);
-      background: linear-gradient(180deg, rgba(var(--tp-surface)/.85), rgba(var(--tp-surface)/.7));
-      backdrop-filter: blur(12px); box-shadow: var(--shadow-1)}
-    .hero-list{display:grid; gap:14px; margin:0; padding:0; list-style:none}
-    .hero-list li{display:flex; align-items:flex-start; gap:12px}
-    .hero-list .tick{width:24px; height:24px; border-radius:8px; flex:0 0 24px; display:grid; place-items:center;
-      background: linear-gradient(135deg, var(--tp-lime), #b8ff7b); color:#0b2a0b; font-weight:900; box-shadow: inset 0 -6px 14px rgba(0,0,0,.15)}
+    .hero h1 {
+      font-size: 2.2rem;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      background: linear-gradient(90deg, var(--glow-purple), #fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-    /* How It Works */
-    section{scroll-margin-top:80px}
-    .section{padding:64px 28px}
-    .title{font-size: clamp(24px, 2.4vw, 32px); margin:0 0 18px}
-    .lede{color:var(--tp-ink-2); margin:0 0 24px}
-    .steps{display:grid; grid-template-columns: repeat(3, 1fr); gap:18px}
-    @media (max-width: 900px){ .steps{grid-template-columns:1fr} }
-    .step{border:1px solid var(--tp-line); border-radius:var(--radius-lg); padding:18px; background: rgba(var(--tp-surface)/.72);
-      backdrop-filter: blur(10px); box-shadow: var(--shadow-1)}
-    .step h3{margin:8px 0 6px}
+    .hero p {
+      max-width: 600px;
+      margin: 0 auto 24px;
+      color: var(--text-dim);
+    }
 
-    /* Plans */
-    .plans{display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; align-items:stretch}
-    @media (max-width: 1000px){ .plans{grid-template-columns:1fr;}}
-    .plan{position:relative; border:1px solid var(--tp-line); border-radius:var(--radius-xl); padding:22px; background: rgba(var(--tp-surface)/.7);
-      backdrop-filter: blur(10px); box-shadow: var(--shadow-1)}
-    .plan.pop{outline:2px solid #b9d7ff; box-shadow: var(--shadow-2)}
-    .price{font-size: clamp(26px, 3.4vw, 40px); font-weight:900; letter-spacing:.2px}
-    .tag{display:inline-block; margin-left:8px; font-size:12px; font-weight:800; color:#063; padding:4px 8px; border-radius:999px;
-      background: linear-gradient(135deg, rgba(141,254,61,.35), rgba(141,254,61,.15)); border:1px solid rgba(11,110,11,.15)}
-    .features{list-style:none; padding:12px 0 0; margin:0; display:grid; gap:10px}
-    .features li{display:flex; gap:8px}
-    .features .dot{width:8px; height:8px; border-radius:99px; background:linear-gradient(135deg, var(--tp-yellow), #ffe66b)}
+    .btn {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 999px;
+      border: 1px solid var(--glow-purple);
+      background: linear-gradient(180deg, #3a3a3a, #222);
+      color: var(--text-light);
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 0 12px rgba(178,109,255,0.4);
+    }
 
-    .plan .btn{width:100%; justify-content:center; margin-top:16px}
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 18px rgba(178,109,255,0.7);
+    }
 
-    /* What’s Inside */
-    .grid{display:grid; grid-template-columns: repeat(6, 1fr); gap:12px}
-    @media (max-width: 1100px){ .grid{grid-template-columns: repeat(3, 1fr)} }
-    @media (max-width: 640px){ .grid{grid-template-columns: repeat(2, 1fr)} }
-    .tile{aspect-ratio: 1 / 1; border-radius:16px; border:1px solid var(--tp-line); overflow:hidden; position:relative;
-      background: linear-gradient(180deg, rgba(var(--tp-surface)/.7), rgba(var(--tp-surface)/.5)); backdrop-filter: blur(8px)}
-    .tile b{position:absolute; inset:auto 10px 10px; background:rgba(255,255,255,.75); padding:6px 10px; border-radius:12px; font-size:12px}
+    section {
+      padding: 50px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
 
-    /* FAQ */
-    .faq{display:grid; grid-template-columns: 1fr 1fr; gap:18px}
-    @media (max-width: 900px){ .faq{grid-template-columns:1fr} }
-    details{border:1px solid var(--tp-line); border-radius:16px; padding:14px 16px; background: rgba(var(--tp-surface)/.7)}
-    summary{cursor:pointer; font-weight:800}
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
 
-    /* Footer */
-    footer{padding:40px 28px; border-top:1px solid var(--tp-line); background: rgba(255,255,255,.7); backdrop-filter: blur(4px)}
-    .foot{max-width:1200px; margin:auto; display:grid; grid-template-columns: 1fr auto; gap:20px; align-items:center}
-    .stamp{display:flex; gap:8px; align-items:center}
-    .stamp .mark{width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg,var(--tp-blue),#152a53); display:grid; place-items:center; color:#fff}
+    p.lede {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      color: var(--text-dim);
+    }
 
-    /* Small helpers */
-    .muted{color:var(--tp-ink-2)}
-    .center{text-align:center}
-    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
-    .caps{letter-spacing:.12em; text-transform:uppercase; font-weight:800; font-size:12px}
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .plan {
+      background: var(--metal-gray);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--metal-light);
+    }
+
+    .price {
+      font-size: 1.6rem;
+      color: var(--glow-purple);
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+    }
+
+    .features li {
+      margin-bottom: 8px;
+      color: var(--text-dim);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 10px;
+      border-top: 1px solid var(--metal-light);
+      color: var(--text-dim);
+      background: #111;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.8rem; }
+      .btn { width: 100%; margin-bottom: 12px; }
+    }
   </style>
 </head>
 <body>
   <header>
-    <div class="wrap nav">
-      <div class="brand">
-        <div class="logo" aria-hidden="true" title="Tek‑Pak">
-          <!-- Minimal TP monogram -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M3 6h18"/><path d="M6 6v12"/><path d="M12 6v12"/><path d="M21 18h-9"/>
-          </svg>
-        </div>
-        <span>TEK‑PAK <span class="muted">Boxscription</span></span>
-      </div>
-      <nav>
-        <a href="#plans" class="cta">Get Your Box</a>
-      </nav>
-    </div>
+    <div class="logo">TEK‑PAK BOXSCRIPTION</div>
+    <nav>
+      <a href="#plans">Plans</a>
+      <a href="#faq">FAQ</a>
+    </nav>
   </header>
 
-  <section class="hero" id="top">
-    <div class="inner">
-      <div>
-        <div class="h-kicker"><span class="badge">TP</span> Green Means Go — Monthly Tech Box</div>
-        <h1 class="h-title">Your personalized <span style="background:linear-gradient(90deg,var(--tp-yellow),var(--tp-lime)); -webkit-background-clip:text; background-clip:text; color:transparent">tech pack</span>, delivered.</h1>
-        <p class="h-sub">Tell us what you use — phones, consoles, laptops, your workbench — and we’ll curate a monthly box of <b>actually‑useful</b> gear: fast chargers, braided cables, headphones, LEDs, hubs, organizers, and the occasional wild surprise.</p>
-        <div class="cta-row">
-          <a href="#plans" class="btn primary"><span class="glow"></span>Build My Box</a>
-          <a href="#how" class="btn"><span class="glow"></span>How it Works</a>
-        </div>
-      </div>
-      <aside class="hero-card">
-        <ul class="hero-list">
-          <li><span class="tick">✓</span><div><b>Personalized</b> to your devices, colors, and vibe.</div></li>
-          <li><span class="tick">✓</span><div><b>Guaranteed value</b>: retail value always beats your price.</div></li>
-          <li><span class="tick">✓</span><div><b>Swap & pause</b> anytime. No pressure, just goodies.</div></li>
-          <li><span class="tick">✓</span><div><b>Tek‑Pak quality</b> — tested, vetted, no flimsy junk.</div></li>
+  <section class="hero">
+    <h1>Your Personalized Tech Box, Delivered Monthly</h1>
+    <p>Get curated tech accessories built around your lifestyle — chargers, cables, LEDs, and more — all boxed up and delivered to your door. Designed for those who live and breathe tech.</p>
+    <a href="#plans" class="btn">Get Started</a>
+  </section>
+
+  <section id="plans">
+    <h2>Pick Your Plan</h2>
+    <p class="lede">Choose your level — each box is customized to your tech setup and style preferences.</p>
+    <div class="plans">
+      <div class="plan">
+        <div class="price">$29/mo</div>
+        <ul class="features">
+          <li>2–3 core items</li>
+          <li>Essential cables & accessories</li>
+          <li>Perfect intro box</li>
         </ul>
-      </aside>
-    </div>
-  </section>
-
-  <section class="section" id="how">
-    <div class="wrap">
-      <h2 class="title">How it works</h2>
-      <p class="lede">Simple flow. Maximum delight.</p>
-      <div class="steps">
-        <div class="step">
-          <div class="caps">Step 1</div>
-          <h3>Tell us your setup</h3>
-          <p class="muted">Quick questionnaire: devices, brands, color prefs (Royal Purple, Lime Green, etc.), work vs. gaming, and must‑haves.</p>
-        </div>
-        <div class="step">
-          <div class="caps">Step 2</div>
-          <h3>We curate & pack</h3>
-          <p class="muted">Our team builds a box around you — quality accessories, tidy organizers, and one show‑piece item each cycle.</p>
-        </div>
-        <div class="step">
-          <div class="caps">Step 3</div>
-          <h3>Green Means Go</h3>
-          <p class="muted">Monthly doorstep delivery. Swap, pause, or speed up shipments anytime from your customer portal.</p>
-        </div>
+        <a href="#" class="btn">Select Starter</a>
       </div>
-    </div>
-  </section>
-
-  <section class="section" id="inside">
-    <div class="wrap">
-      <h2 class="title">What’s inside a typical box?</h2>
-      <p class="lede">Mix and match from these categories depending on your profile and plan.</p>
-      <div class="grid" aria-label="Sample items grid">
-        <div class="tile"><b>Fast Chargers</b></div>
-        <div class="tile"><b>USB‑C / Lightning Cables</b></div>
-        <div class="tile"><b>Headphones / Earbuds</b></div>
-        <div class="tile"><b>LED Strips & Pucks</b></div>
-        <div class="tile"><b>Hubs & Adapters</b></div>
-        <div class="tile"><b>Desk Organizers</b></div>
-        <div class="tile"><b>Phone Mounts</b></div>
-        <div class="tile"><b>Car Tech</b></div>
-        <div class="tile"><b>Gaming Add‑ons</b></div>
-        <div class="tile"><b>Repair Tools</b></div>
-        <div class="tile"><b>Power Banks</b></div>
-        <div class="tile"><b>Wildcard Surprise</b></div>
+      <div class="plan">
+        <div class="price">$49/mo</div>
+        <ul class="features">
+          <li>3–5 curated items</li>
+          <li>LED or organizer every other month</li>
+          <li>Our most popular box</li>
+        </ul>
+        <a href="#" class="btn">Select Classic</a>
       </div>
-    </div>
-  </section>
-
-  <section class="section" id="plans">
-    <div class="wrap">
-      <h2 class="title">Pick your plan</h2>
-      <p class="lede">All plans are personalized. Cancel or pause anytime. Tax & shipping calculated at checkout.</p>
-      <div class="plans">
-        <article class="plan" aria-label="Starter plan">
-          <div class="caps">Starter</div>
-          <div class="price">$29<span class="muted">/mo</span></div>
-          <ul class="features">
-            <li><span class="dot"></span>2–3 core items</li>
-            <li><span class="dot"></span>Device‑matched cables</li>
-            <li><span class="dot"></span>Quality over quantity</li>
-          </ul>
-          <a class="btn" href="#quiz"><span class="glow"></span>Start with Starter</a>
-        </article>
-        <article class="plan pop" aria-label="Classic plan">
-          <div class="caps">Classic</div>
-          <div class="price">$49<span class="muted">/mo</span> <span class="tag">Most Popular</span></div>
-          <ul class="features">
-            <li><span class="dot"></span>3–5 items (incl. one ‘hero’ item)</li>
-            <li><span class="dot"></span>LED or organizer every other month</li>
-            <li><span class="dot"></span>Priority curation</li>
-          </ul>
-          <a class="btn primary" href="#quiz"><span class="glow"></span>Build My Classic Box</a>
-        </article>
-        <article class="plan" aria-label="Elite plan">
-          <div class="caps">Elite</div>
-          <div class="price">$89<span class="muted">/mo</span></div>
-          <ul class="features">
-            <li><span class="dot"></span>5–7 items + premium hero</li>
-            <li><span class="dot"></span>Car & gaming add‑ons eligible</li>
-            <li><span class="dot"></span>First access to limited drops</li>
-          </ul>
-          <a class="btn" href="#quiz"><span class="glow"></span>Go Elite</a>
-        </article>
-      </div>
-      <p class="muted" style="margin-top:10px">Need a non‑monthly cadence? Choose every 2 or 3 months at checkout. Gifting available.</p>
-    </div>
-  </section>
-
-  <section class="section" id="quiz">
-    <div class="wrap">
-      <h2 class="title">Dial in your preferences</h2>
-      <p class="lede">This quick starter form captures the essentials. Hook it to your Sheet or customer portal on submit.</p>
-      <form class="step" onsubmit="event.preventDefault(); alert('Thanks! We\'ll use this to personalize your box. (Wire this to your backend or Google Sheet.)');">
-        <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:14px">
-          <label>Full Name<br><input required name="name" placeholder="Alex Tech"/></label>
-          <label>Email<br><input required type="email" name="email" placeholder="alex@domain.com"/></label>
-          <label>Primary Device(s)<br><input name="devices" placeholder="iPhone 15, PS5, Lenovo ThinkPad"/></label>
-          <label>Connector Types<br><input name="ports" placeholder="USB‑C, Lightning, Micro‑USB"/></label>
-          <label>Style & Colors<br><input name="style" placeholder="Royal purple, lime glow, clean desk"/></label>
-          <label>Must‑Haves<br><input name="must" placeholder="60W charger, braided cables, car mount"/></label>
-          <label style="grid-column:1/-1">Notes<br><textarea name="notes" rows="3" placeholder="Tell us what to avoid, car model for car tech, desk size, etc."></textarea></label>
-        </div>
-        <div style="display:flex; gap:12px; margin-top:12px">
-          <button class="btn primary" type="submit"><span class="glow"></span>Submit Preferences</button>
-          <a class="btn" href="#plans"><span class="glow"></span>Back to Plans</a>
-        </div>
-      </form>
-      <style>
-        form.step input, form.step textarea{width:100%; margin-top:6px; padding:12px 14px; border-radius:12px; border:1px solid var(--tp-line);
-          background: rgba(255,255,255,.9); outline:none}
-        form.step input:focus, form.step textarea:focus{border-color:#9cc5ff; box-shadow: 0 0 0 4px rgba(156,197,255,.3)}
-        label{font-weight:700}
-      </style>
-    </div>
-  </section>
-
-  <section class="section" id="faq">
-    <div class="wrap">
-      <h2 class="title">FAQ</h2>
-      <div class="faq">
-        <details>
-          <summary>Can I pause or skip a month?</summary>
-          <p>Yep. You can pause, skip, or change frequency anytime from your account. We’ll remind you before we pack.</p>
-        </details>
-        <details>
-          <summary>What if I already own an item?</summary>
-          <p>Tell us in your preferences. If we goof, reach out and we’ll swap or credit you on the next box.</p>
-        </details>
-        <details>
-          <summary>Do you ship internationally?</summary>
-          <p>At launch we’re focusing on U.S. delivery. Broader shipping coming soon.</p>
-        </details>
-        <details>
-          <summary>How do you ensure quality?</summary>
-          <p>We test gear in‑house and source from trusted brands. No random white‑label junk.</p>
-        </details>
+      <div class="plan">
+        <div class="price">$89/mo</div>
+        <ul class="features">
+          <li>5–7 items + premium gear</li>
+          <li>Exclusive tech & limited drops</li>
+          <li>Priority personalization</li>
+        </ul>
+        <a href="#" class="btn">Select Elite</a>
       </div>
     </div>
   </section>
 
   <footer>
-    <div class="foot">
-      <div class="stamp">
-        <div class="mark" aria-hidden="true">TP</div>
-        <div>
-          <div class="caps">An initiative of Tek‑Pak Inc.</div>
-          <div class="muted">© 2025 Tek‑Pak Inc — Green Means Go</div>
-        </div>
-      </div>
-      <div class="mono muted">v1.0 • Single‑file HTML</div>
-    </div>
+    © 2025 Tek‑Pak Inc • Green Means Go
   </footer>
 </body>
 </html>
